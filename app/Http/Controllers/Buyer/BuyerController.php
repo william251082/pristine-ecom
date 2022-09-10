@@ -3,18 +3,17 @@
 namespace App\Http\Controllers\Buyer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Buyer;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class BuyerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        $buyers = Buyer::has('transaction')->get();
+
+        return response()->json(['data' => $buyers], 200);
     }
 
     /**
@@ -38,15 +37,11 @@ class BuyerController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show($id): JsonResponse
     {
-        //
+        $buyer = Buyer::has('transaction')->findOrFail($id);
+
+        return response()->json(['data' => $buyer], 200);
     }
 
     /**
