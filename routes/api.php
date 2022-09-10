@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('buyer', 'App\Http\Controllers\Buyer\BuyerController');
+Route::resource('category', 'App\Http\Controllers\Category\CategoryController');
+Route::resource('product', 'App\Http\Controllers\Product\ProductController');
+Route::resource('seller', 'App\Http\Controllers\Seller\SellerController');
+Route::resource('transaction', 'App\Http\Controllers\Transaction\TransactionController');
+Route::resource('user', 'App\Http\Controllers\User\UserController');
