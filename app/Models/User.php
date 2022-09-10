@@ -45,6 +45,21 @@ class User extends Authenticatable
         'verification_token',
     ];
 
+    public function getNameAttribute(string $name): string
+    {
+        return ucwords($name);
+    }
+
+    public function setNameAttribute(string $name): void
+    {
+        $this->attributes['name'] = strtolower($name);
+    }
+
+    public function setEmailAttribute(string $email): void
+    {
+        $this->attributes['email'] = strtolower($email);
+    }
+
     /**
      * The attributes that should be cast.
      *
