@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Seller extends User
 {
-    protected $table = 'seller';
+    protected $table = 'user';
 
-    public function products(): HasMany
+    public function product(): HasMany
     {
         return $this->hasMany(Product::class);
     }

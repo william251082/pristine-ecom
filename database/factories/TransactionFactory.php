@@ -17,12 +17,12 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         $seller = Seller::has('product')->get()->random();
-        $buyer = User::all()()->except($seller->id)->random();
+        $buyer = User::all()->except($seller->id)->random();
 
         return [
             'quantity' => fake()->numberBetween(1, 3),
             'buyer_id' => $buyer->id,
-            'product_id' => $seller->products->random()->id
+            'product_id' => $seller->product->random()->id
         ];
     }
 }
