@@ -59,7 +59,6 @@ class UserController extends ApiController
         if ($request->has('name')) {
              $user->name = $request->name;
         }
-
         if ($request->has('email') && $user->email !== $request->email) {
             $user->verified = User::VERIFIED_USER;
             $user->verification_token = User::generateVerificationCode();
@@ -70,15 +69,12 @@ class UserController extends ApiController
         }
         if ($request->has('admin')) {
             if (!$user->isVerified()) {
-                return response()->json(['error' => 'Only verified users can modify.']);
+                return $this->errorResponse('Only verified users can modify.', 409);
             }
             $user->admin = $request->admin;
         }
-
         if (!$user->isDirty()) {
-            return response()->json([
-                'error' => 'You need to specify a different value to update.', 'code' => 422
-            ], 422);
+            return $this->errorResponse('You need to specify a different value to update.', 422);
         }
         $user->save();
 
