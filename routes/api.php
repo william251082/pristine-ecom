@@ -23,4 +23,4 @@ Route::resource('category', 'App\Http\Controllers\Category\CategoryController');
 Route::resource('product', 'App\Http\Controllers\Product\ProductController');
 Route::resource('seller', 'App\Http\Controllers\Seller\SellerController');
 Route::resource('transaction', 'App\Http\Controllers\Transaction\TransactionController');
-Route::resource('user', 'App\Http\Controllers\User\UserController');
+Route::resource('user', 'App\Http\Controllers\User\UserController', ['except' => 'create', 'edit']);
