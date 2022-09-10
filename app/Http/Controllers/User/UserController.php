@@ -6,14 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\ApiController;
+use App\Traits\ApiResponser;
 
 class UserController extends ApiController
 {
+    use ApiResponser;
+
     public function index(): JsonResponse
     {
         $users = User::all();
 
-        return response()->json(['data' => $users], 200);
+        return $this->showAll($users);
     }
 
     public function store(Request $request): JsonResponse
@@ -32,14 +35,14 @@ class UserController extends ApiController
 
         $user = User::create($data);
 
-        return response()->json(['data' => $user], 201);
+        return $this->showOne($user, 201);
     }
 
     public function show($id): JsonResponse
     {
         $user = User::findOrFail($id);
 
-        return response()->json(['data' => $user], 200);
+        return $this->showOne($user);
     }
 
     public function update(Request $request, $id): JsonResponse
@@ -79,7 +82,7 @@ class UserController extends ApiController
         }
         $user->save();
 
-        return response()->json(['data' => $user], 200);
+        return $this->showOne($user);
     }
 
     public function destroy($id): JsonResponse
@@ -87,6 +90,6 @@ class UserController extends ApiController
         $user = User::findOrFail($id);
         $user->delete();
 
-        return response()->json(['data' => $user], 200);
+        return $this->showOne($user);
     }
 }

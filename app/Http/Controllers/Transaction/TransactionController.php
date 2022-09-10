@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Transaction;
 
 use App\Http\Controllers\ApiController;
+use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 
 class TransactionController extends ApiController
 {
+    use ApiResponser;
+
     /**
      * Display a listing of the resource.
      *

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\ApiController;
+use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 
 class ProductController extends ApiController
 {
+    use ApiResponser;
+
     /**
      * Display a listing of the resource.
      *
