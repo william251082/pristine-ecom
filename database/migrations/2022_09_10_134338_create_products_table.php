@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,15 +14,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('personal_access_token', function (Blueprint $table) {
+        Schema::create('product', function (Blueprint $table) {
             $table->increments('id');
-            $table->morphs('tokenable');
             $table->string('name');
-            $table->string('token', 64)->unique();
-            $table->text('abilities')->nullable();
-            $table->timestamp('last_used_at')->nullable();
-            $table->timestamp('expires_at')->nullable();
+            $table->string('description', 1000);
+            $table->integer('quantity')->unsigned();
+            $table->string('status')->default(Product::UNAVAILABLE_PRODUCT);
+            $table->string('image');
+            $table->integer('seller_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('seller_id')->references('id')->on('user');
         });
     }
 
@@ -32,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('personal_access_token');
+        Schema::dropIfExists('product');
     }
 };
