@@ -18,9 +18,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('buyer', 'App\Http\Controllers\Buyer\BuyerController');
-Route::resource('category', 'App\Http\Controllers\Category\CategoryController');
-Route::resource('product', 'App\Http\Controllers\Product\ProductController');
-Route::resource('seller', 'App\Http\Controllers\Seller\SellerController');
-Route::resource('transaction', 'App\Http\Controllers\Transaction\TransactionController');
+Route::resource('buyer', 'App\Http\Controllers\Buyer\BuyerController', ['only' => ['index' => 'show']]);
+Route::resource('category', 'App\Http\Controllers\Category\CategoryController', ['except' => 'create', 'edit']);
+Route::resource('product', 'App\Http\Controllers\Product\ProductController', ['only' => ['index' => 'show']]);
+Route::resource('seller', 'App\Http\Controllers\Seller\SellerController', ['only' => ['index' => 'show']]);
+Route::resource('transaction', 'App\Http\Controllers\Transaction\TransactionController', ['only' => ['index' => 'show']]);
 Route::resource('user', 'App\Http\Controllers\User\UserController', ['except' => 'create', 'edit']);
