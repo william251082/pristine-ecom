@@ -18,10 +18,8 @@ class SellerController extends ApiController
         return $this->showAll($sellers);
     }
 
-    public function show($id): JsonResponse
+    public function show(Seller $seller): JsonResponse
     {
-        $seller = Seller::has('product')->findOrFail($id);
-
         return $this->showOne($seller);
     }
 }
