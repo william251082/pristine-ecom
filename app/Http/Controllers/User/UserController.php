@@ -38,17 +38,13 @@ class UserController extends ApiController
         return $this->showOne($user, 201);
     }
 
-    public function show($id): JsonResponse
+    public function show(User $user): JsonResponse
     {
-        $user = User::findOrFail($id);
-
         return $this->showOne($user);
     }
 
-    public function update(Request $request, $id): JsonResponse
+    public function update(Request $request, User $user): JsonResponse
     {
-        $user = User::findOrFail($id);
-
         $rules = [
             'email' => 'required|email|unique:user,email,'.$user->id,
             'password' => 'required|min:6|confirmed',
@@ -81,9 +77,8 @@ class UserController extends ApiController
         return $this->showOne($user);
     }
 
-    public function destroy($id): JsonResponse
+    public function destroy(User $user): JsonResponse
     {
-        $user = User::findOrFail($id);
         $user->delete();
 
         return $this->showOne($user);
