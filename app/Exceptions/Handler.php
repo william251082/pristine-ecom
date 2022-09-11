@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use App\Traits\ApiResponser;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
@@ -65,11 +67,22 @@ class Handler extends ExceptionHandler
             $modelName = strtolower(class_basename($e->getModel()));
             return $this->errorResponse("Does not exists any $modelName with the specified indicator.", 404);
         }
+        if ($e instanceof AuthenticationException) {
+            return $this->unauthenticated($request, $e);
+        }
+        if ($e instanceof AuthorizationException) {
+            return $this->errorResponse($e->getMessage(), 403);
+        }
 
         return parent::render($request, $e);
     }
 
-    protected function convertValidationExceptionToResponse(ValidationException $e, $request): Response|JsonResponse|SymfonyResponse|null
+    protected function unauthenticated($request, AuthenticationException $exception): JsonResponse
+    {
+        return $this->errorResponse('Unauthenticated', 401);
+    }
+
+    protected function convertValidationExceptionToResponse(ValidationException $e, $request): JsonResponse
     {
         $errors = $e->validator->errors()->getMessages();
 
