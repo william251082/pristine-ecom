@@ -13,7 +13,7 @@ trait ApiResponser
         return response()->json($data, $code);
     }
 
-    private function errorResponse(string $message, int $code): JsonResponse
+    private function errorResponse(string|array $message, int $code): JsonResponse
     {
         return response()->json(['error' => $message, 'code' => $code], $code);
     }
