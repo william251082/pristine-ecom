@@ -31,6 +31,10 @@ Route::resource('category.seller', 'App\Http\Controllers\Category\CategorySeller
 Route::resource('category.transaction', 'App\Http\Controllers\Category\CategoryTransactionController');
 
 Route::resource('product', 'App\Http\Controllers\Product\ProductController');
+Route::resource('product.transaction', 'App\Http\Controllers\Product\ProductTransactionController');
+Route::resource('product.buyer', 'App\Http\Controllers\Product\ProductBuyerController');
+Route::resource('product.buyer.transaction', 'App\Http\Controllers\Product\ProductBuyerTransactionController');
+Route::resource('product.category', 'App\Http\Controllers\Product\ProductCategoryController');
 
 Route::resource('seller', 'App\Http\Controllers\Seller\SellerController');
 Route::resource('seller.transaction', 'App\Http\Controllers\Seller\SellerTransactionController');
