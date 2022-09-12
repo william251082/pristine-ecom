@@ -24,7 +24,11 @@ Route::resource('buyer.product', 'App\Http\Controllers\Buyer\BuyerProductControl
 Route::resource('buyer.seller', 'App\Http\Controllers\Buyer\BuyerSellerController');
 Route::resource('buyer.category', 'App\Http\Controllers\Buyer\BuyerCategoryController');
 
-Route::resource('category', 'App\Http\Controllers\Category\CategoryController', ['except' => 'create', 'edit']);
+Route::resource('category', 'App\Http\Controllers\Category\CategoryController');
+Route::resource('category.buyer', 'App\Http\Controllers\Category\CategoryBuyerController');
+Route::resource('category.product', 'App\Http\Controllers\Category\CategoryProductController');
+Route::resource('category.seller', 'App\Http\Controllers\Category\CategorySellerController');
+Route::resource('category.transaction', 'App\Http\Controllers\Category\CategoryTransactionController');
 
 Route::resource('product', 'App\Http\Controllers\Product\ProductController');
 
