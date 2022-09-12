@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Category;
 
 use App\Http\Controllers\ApiController;
-use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Traits\ApiResponser;
 use Illuminate\Http\JsonResponse;

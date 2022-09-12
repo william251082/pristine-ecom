@@ -1,3 +1,2 @@
 ./vendor/bin/pest
-class CategoryController extends Controller
-
+php artisan make:controller Category/CategoryController -r -m Category
