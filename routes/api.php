@@ -23,4 +23,6 @@ Route::resource('category', 'App\Http\Controllers\Category\CategoryController', 
 Route::resource('product', 'App\Http\Controllers\Product\ProductController');
 Route::resource('seller', 'App\Http\Controllers\Seller\SellerController', ['only' => ['index' => 'show']]);
 Route::resource('transaction', 'App\Http\Controllers\Transaction\TransactionController');
+Route::resource('transaction.category', 'App\Http\Controllers\Transaction\TransactionCategoryController');
+Route::resource('transaction.seller', 'App\Http\Controllers\Transaction\TransactionSellerController');
 Route::resource('user', 'App\Http\Controllers\User\UserController', ['except' => 'create', 'edit']);
