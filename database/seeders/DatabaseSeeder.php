@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Buyer;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Transaction;
@@ -23,6 +24,11 @@ class DatabaseSeeder extends Seeder
             Product::truncate();
             Transaction::truncate();
             DB::table('category_product')->truncate();
+
+            User::flushEventListeners();
+            Product::flushEventListeners();
+            Transaction::flushEventListeners();
+            Category::flushEventListeners();
 
             $userQuantity = 50;
             $categoryQuantity = 50;
