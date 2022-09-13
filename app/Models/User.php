@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Transformers\UserTransformer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -19,6 +20,7 @@ class User extends Authenticatable
     const ADMIN_USER = '1';
     const REGULAR_USER = '0';
 
+    public string $transformer = UserTransformer::class;
     protected $table = 'user';
     protected $dates = ['deleted_at'];
 
