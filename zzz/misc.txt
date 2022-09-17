@@ -8,3 +8,4 @@ replace key and value
 
 php artisan make:auth
 vendor/laravel/ui/src/AuthRouteMethods.php
+remove registration endpoint, controller and route
