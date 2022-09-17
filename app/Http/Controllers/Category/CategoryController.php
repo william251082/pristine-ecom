@@ -5,12 +5,19 @@ namespace App\Http\Controllers\Category;
 use App\Http\Controllers\ApiController;
 use App\Models\Category;
 use App\Traits\ApiResponser;
+use App\Transformers\CategoryTransformer;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class CategoryController extends ApiController
 {
     use ApiResponser;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('transform.input:'.CategoryTransformer::class)->only(['store', 'update']);
+    }
 
     public function index(): JsonResponse
     {

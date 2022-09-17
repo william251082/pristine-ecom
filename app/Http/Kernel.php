@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\CustomThrottleRequests;
 use App\Http\Middleware\SignatureMiddleware;
+use App\Http\Middleware\TransformInput;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -68,6 +69,7 @@ class Kernel extends HttpKernel
 //        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'throttle' => CustomThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'signature' => SignatureMiddleware::class
+        'signature' => SignatureMiddleware::class,
+        'transform.input' => TransformInput::class
     ];
 }

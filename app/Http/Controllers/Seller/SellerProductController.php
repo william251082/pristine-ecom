@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Seller;
 use App\Models\User;
 use App\Traits\ApiResponser;
+use App\Transformers\ProductTransformer;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,6 +16,12 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class SellerProductController extends ApiController
 {
     use ApiResponser;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('transform.input:'.ProductTransformer::class)->only(['store', 'update']);
+    }
 
     public function index(Seller $seller): JsonResponse
     {

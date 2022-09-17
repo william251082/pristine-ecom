@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Traits\ApiResponser;
+use App\Transformers\TransactionTransformer;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,6 +15,12 @@ use Illuminate\Support\Facades\DB;
 class ProductBuyerTransactionController extends ApiController
 {
     use ApiResponser;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('transform.input:'.TransactionTransformer::class)->only(['store']);
+    }
 
     public function store(Request $request, Product $product, User $buyer): JsonResponse
     {

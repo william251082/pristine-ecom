@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Mail\UserCreated;
+use App\Transformers\UserTransformer;
 use Exception;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -14,6 +15,12 @@ use Illuminate\Support\Facades\Mail;
 class UserController extends ApiController
 {
     use ApiResponser;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('transform.input:'.UserTransformer::class)->only(['store', 'update']);
+    }
 
     public function index(): JsonResponse
     {
