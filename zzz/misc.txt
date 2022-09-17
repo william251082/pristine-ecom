@@ -5,3 +5,6 @@ php artisan migrate:refresh --seed
 replace key and value
 '(.+)'\s=>\s'(.+)'
 '$2' => '$1'
+
+php artisan make:auth
+vendor/laravel/ui/src/AuthRouteMethods.php
