@@ -2,9 +2,10 @@
 
 namespace App\Traits;
 
-use Illuminate\Database\Eloquent\Model;
+ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection;
+use League\Fractal\TransformerAbstract;
 
 trait ApiResponser
 {
@@ -24,7 +25,7 @@ trait ApiResponser
             return $this->successResponse(['data' => $collection], $code);
         }
         $transformer = $collection->first()->transformer;
-        $collection = $this->sortData($collection);
+        $collection = $this->sortData($collection, $transformer);
         $collection = $this->transformData($collection, $transformer);
 
         return $this->successResponse($collection, $code);
@@ -43,10 +44,10 @@ trait ApiResponser
         return $this->successResponse(['data' => $message], $code);
     }
 
-    protected function sortData(Collection $collection): Collection
+    protected function sortData(Collection $collection, TransformerAbstract|string $transformer): Collection
     {
         if (request()->has('sort_by')) {
-            $attribute = request()->sort_by;
+            $attribute = $transformer::originalAttribute(request()->sort_by);
 
             $collection = $collection->sortBy->{$attribute};
         }
