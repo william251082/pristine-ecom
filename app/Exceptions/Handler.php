@@ -8,6 +8,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -94,6 +95,9 @@ class Handler extends ExceptionHandler
                     409
                 );
             }
+        }
+        if ($e instanceof TokenMismatchException) {
+            return redirect()->back()->withInput($request->input());
         }
         if (config('app.debug')) {
             return parent::render($request, $e);
