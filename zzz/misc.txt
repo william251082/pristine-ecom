@@ -11,3 +11,17 @@ vendor/laravel/ui/src/AuthRouteMethods.php
 remove registration endpoint, controller and route
 
 remove the password on a fail request
+
+composer require laravel/passport
+
+➜  pristine-ecom git:(dev) ✗ php artisan passport:install
+Encryption keys generated successfully.
+Personal access client created successfully.
+Client ID: 1
+Client secret: XWU4hxxKDmhCMXaiSJCR3dIAQHSl2DT8jyymaoLV
+Password grant client created successfully.
+Client ID: 2
+Client secret: 4pKWD6x1QJOKJYgWbyyYc56l9i8bdqCd4VuQrFpS
+➜  pristine-ecom git:(dev) ✗
+
+php artisan route:list

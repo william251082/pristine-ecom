@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+use Laravel\Passport\PassportServiceProvider;
 
 return [
 
@@ -185,6 +186,7 @@ return [
         /*
          * Package Service Providers...
          */
+        PassportServiceProvider::class,
         Spatie\Fractal\FractalServiceProvider::class,
 
         /*
