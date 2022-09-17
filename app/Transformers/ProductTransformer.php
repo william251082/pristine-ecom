@@ -86,4 +86,22 @@ class ProductTransformer extends TransformerAbstract
 
         return $attributes[$index] ?? null;
     }
+
+    public static function transformedAttribute(?string $index): ?string
+    {
+        $attributes = [
+            'id' => 'identifier',
+            'name' => 'title',
+            'description' => 'details',
+            'quantity' => 'stock',
+            'status' => 'situation',
+            'seller_id' => 'seller',
+            'image' => 'picture',
+            'created_at' => 'creationDate',
+            'updated_at' => 'lastChanged',
+            'deleted_at' => 'deleteDate'
+        ];
+
+        return $attributes[$index] ?? null;
+    }
 }
