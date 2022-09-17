@@ -13,6 +13,11 @@ class ProductCategoryController extends ApiController
 {
     use ApiResponser;
 
+    public function __construct()
+    {
+        $this->middleware('client.credentials')->only(['index']);
+    }
+
     public function index(Product $product): JsonResponse
     {
         $buyers = $product->categories()->get();

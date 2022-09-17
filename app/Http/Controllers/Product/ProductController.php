@@ -11,6 +11,11 @@ class ProductController extends ApiController
 {
     use ApiResponser;
 
+    public function __construct()
+    {
+        $this->middleware('client.credentials')->only(['index', 'show']);
+    }
+
     public function index(): JsonResponse
     {
         $products = Product::all();
