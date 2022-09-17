@@ -24,6 +24,7 @@ trait ApiResponser
             return $this->successResponse(['data' => $collection], $code);
         }
         $transformer = $collection->first()->transformer;
+        $collection = $this->sortData($collection);
         $collection = $this->transformData($collection, $transformer);
 
         return $this->successResponse($collection, $code);
@@ -42,9 +43,18 @@ trait ApiResponser
         return $this->successResponse(['data' => $message], $code);
     }
 
+    protected function sortData(Collection $collection): Collection
+    {
+        if (request()->has('sort_by')) {
+            $attribute = request()->sort_by;
+
+            $collection = $collection->sortBy->{$attribute};
+        }
+        return $collection;
+    }
+
     protected function transformData(Collection|Model $data, $transformer): array
     {
-
         $transformation = fractal($data, new $transformer);
 
         return $transformation->toArray();
