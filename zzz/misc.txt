@@ -14,14 +14,8 @@ remove the password on a fail request
 
 composer require laravel/passport
 
-➜  pristine-ecom git:(dev) ✗ php artisan passport:install
-Encryption keys generated successfully.
-Personal access client created successfully.
-Client ID: 1
-Client secret: XWU4hxxKDmhCMXaiSJCR3dIAQHSl2DT8jyymaoLV
-Password grant client created successfully.
-Client ID: 2
-Client secret: 4pKWD6x1QJOKJYgWbyyYc56l9i8bdqCd4VuQrFpS
-➜  pristine-ecom git:(dev) ✗
+Client ID: 974ae664-f5f3-44c7-b772-5b616cb9e91d
+Client secret: Smv7o7zWIYT2FpbYVLm0mnGn1tV2Nufn2TWbUQzl
 
 php artisan route:list
+php artisan passport:client

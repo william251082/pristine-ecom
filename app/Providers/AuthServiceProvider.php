@@ -5,11 +5,8 @@ namespace App\Providers;
 // use Illuminate\Support\Facades\Gate;
 use Carbon\Carbon;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Laravel\Passport\AuthCode;
-use Laravel\Passport\Bridge\Client;
+use Illuminate\Support\Facades\Route;
 use Laravel\Passport\Passport;
-use Laravel\Passport\PersonalAccessClient;
-use Laravel\Passport\Token;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -31,11 +28,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Passport::useTokenModel(Token::class);
-        Passport::useClientModel(Client::class);
-        Passport::useAuthCodeModel(AuthCode::class);
-        Passport::usePersonalAccessClientModel(PersonalAccessClient::class);
+        Passport::loadKeysFrom(dirname(__FILE__,3).'/storage');
+        Passport::hashClientSecrets();
         Passport::tokensExpireIn(Carbon::now()->addMinutes(30));
         Passport::refreshTokensExpireIn(Carbon::now()->addDays(30));
+        Passport::personalAccessTokensExpireIn(now()->addMonths(6));
     }
 }
