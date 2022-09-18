@@ -11,6 +11,11 @@ class CategoryBuyerController extends ApiController
 {
     use ApiResponser;
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function index(Category $category): JsonResponse
     {
         $buyers = $category

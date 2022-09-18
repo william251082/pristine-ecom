@@ -11,6 +11,11 @@ class BuyerController extends ApiController
 {
     use ApiResponser;
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function index(): JsonResponse
     {
         $buyers = Buyer::has('transaction')->get();

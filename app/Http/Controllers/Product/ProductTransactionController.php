@@ -11,6 +11,11 @@ class ProductTransactionController extends ApiController
 {
     use ApiResponser;
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function index(Product $product): JsonResponse
     {
         $transactions = $product->transactions()->get();

@@ -11,6 +11,11 @@ class BuyerProductController extends ApiController
 {
     use ApiResponser;
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function index(Buyer $buyer): JsonResponse
     {
         $products = $buyer

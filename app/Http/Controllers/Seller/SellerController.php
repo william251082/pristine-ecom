@@ -11,6 +11,11 @@ class SellerController extends ApiController
 {
     use ApiResponser;
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function index(): JsonResponse
     {
         $sellers = Seller::has('product')->get();
