@@ -17,6 +17,7 @@ class ProductCategoryController extends ApiController
     {
         $this->middleware('client.credentials')->only(['index']);
         $this->middleware('api.auth')->except(['index']);
+        $this->middleware('scope:manage-products')->except('index');
     }
 
     public function index(Product $product): JsonResponse

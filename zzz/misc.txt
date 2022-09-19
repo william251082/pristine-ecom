@@ -50,4 +50,5 @@ curl --location --request POST 'http://localhost:8000/api/oauth/token' \
 --form 'grant_type="refresh_token"' \
 --form 'client_id="974af286-887f-4235-9324-5ae8fd3573fb"' \
 --form 'client_secret="YOiZ9bk4FHMQh6XOjXFO3vuP89D21lMlwg2xRj9k"' \
---form 'refresh_token=<refresh_token>'
+--form 'refresh_token=<refresh_token>' \
+--form 'scope=manage-products purchase-product'
