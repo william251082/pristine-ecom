@@ -122,10 +122,15 @@ class UserController extends ApiController
         return $this->showMessage('The account has been successfully verified.');
     }
 
+    public function me(Request $request): JsonResponse
+    {
+        return $this->showOne($request->user());
+    }
+
     /**
      * @throws Exception
      */
-    public function resend(User $user)
+    public function resend(User $user): JsonResponse
     {
         if ($user->isVerified()) {
             return $this->errorResponse('This user is already verified.', 409);
