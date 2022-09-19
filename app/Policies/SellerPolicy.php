@@ -4,11 +4,12 @@ namespace App\Policies;
 
 use App\Models\Seller;
 use App\Models\User;
+use App\Traits\AdminActions;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class SellerPolicy
 {
-    use HandlesAuthorization;
+    use HandlesAuthorization, AdminActions;
 
     public function view(User $user, Seller $seller): bool
     {

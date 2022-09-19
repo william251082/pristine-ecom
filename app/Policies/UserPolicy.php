@@ -3,11 +3,12 @@
 namespace App\Policies;
 
 use App\Models\User;
+use App\Traits\AdminActions;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
 {
-    use HandlesAuthorization;
+    use HandlesAuthorization, AdminActions;
 
     public function view(User $authenticatedUser, User $user): bool
     {
