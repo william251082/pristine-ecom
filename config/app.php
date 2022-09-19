@@ -1,5 +1,6 @@
 <?php
 
+use Fruitcake\Cors\CorsServiceProvider;
 use Illuminate\Support\Facades\Facade;
 use Laravel\Passport\PassportServiceProvider;
 
@@ -197,6 +198,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        CorsServiceProvider::class
 
     ],
 

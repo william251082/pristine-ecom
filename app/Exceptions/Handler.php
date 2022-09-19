@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use App\Traits\ApiResponser;
+use Fruitcake\Cors\CorsService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -63,7 +64,15 @@ class Handler extends ExceptionHandler
         });
     }
 
-    public function render($request, Throwable $e): Response|JsonResponse|SymfonyResponse|null
+    public function render($request, $e): Response|JsonResponse|SymfonyResponse|null
+    {
+        $response = $this->handleExceptions($request, $e);
+        app(CorsService::class)->addActualRequestHeaders($request, $response);
+
+        return $response;
+    }
+
+    private function handleExceptions($request, Throwable $e): Response|JsonResponse|SymfonyResponse|null
     {
         if ($e instanceof ValidationException) {
             return $this->convertValidationExceptionToResponse($e, $request);
