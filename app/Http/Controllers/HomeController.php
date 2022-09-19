@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\View;
+use Illuminate\View\Factory;
+
 class HomeController extends Controller
 {
     /**
@@ -22,5 +26,10 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function getTokens(): Factory|View|Application
+    {
+        return view('home.personal-tokens');
     }
 }
