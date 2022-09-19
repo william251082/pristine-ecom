@@ -70,7 +70,6 @@ class UserController extends ApiController
      */
     public function update(Request $request, User $user): JsonResponse
     {
-        $this->allowedAdminAction();
         $rules = [
             'email' => 'required|email|unique:user,email,'.$user->id,
             'password' => 'required|min:6|confirmed',
@@ -90,6 +89,7 @@ class UserController extends ApiController
             $user->password = bcrypt($request->password);
         }
         if ($request->has('admin')) {
+            $this->allowedAdminAction();
             if (!$user->isVerified()) {
                 return $this->errorResponse('Only verified users can modify.', 409);
             }
