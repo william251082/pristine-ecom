@@ -5,12 +5,14 @@ namespace App\Http\Controllers\User;
 use App\Mail\UserCreated;
 use App\Transformers\UserTransformer;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\ApiController;
 use App\Traits\ApiResponser;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends ApiController
 {
@@ -27,8 +29,12 @@ class UserController extends ApiController
         $this->middleware('can:delete,user')->only('destroy');
     }
 
+    /**
+     * @throws AuthorizationException
+     */
     public function index(): JsonResponse
     {
+        $this->allowedAdminAction();
         $users = User::all();
 
         return $this->showAll($users);
@@ -58,8 +64,13 @@ class UserController extends ApiController
         return $this->showOne($user);
     }
 
+    /**
+     * @throws AuthorizationException
+     * @throws ValidationException
+     */
     public function update(Request $request, User $user): JsonResponse
     {
+        $this->allowedAdminAction();
         $rules = [
             'email' => 'required|email|unique:user,email,'.$user->id,
             'password' => 'required|min:6|confirmed',
