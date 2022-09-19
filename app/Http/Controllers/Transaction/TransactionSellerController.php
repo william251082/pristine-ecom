@@ -15,6 +15,7 @@ class TransactionSellerController extends ApiController
     {
         parent::__construct();
         $this->middleware('scope:read-general')->only('index');
+        $this->middleware('can:view,transaction')->only('index');
     }
 
     public function index(Transaction $transaction): JsonResponse
