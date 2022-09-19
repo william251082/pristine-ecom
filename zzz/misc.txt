@@ -61,3 +61,5 @@ curl --location --request POST 'http://localhost:8000/api/oauth/token' \
 --form 'username="leon34@example.org"' \
 --form 'password="password"' \
 --form 'scope="read-general"'
+
+php artisan make:policy SellerPolicy --model=Seller
