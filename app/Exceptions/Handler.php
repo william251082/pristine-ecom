@@ -59,7 +59,7 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
+        $this->reportable(function ($e) {
             //
         });
     }
@@ -67,12 +67,12 @@ class Handler extends ExceptionHandler
     public function render($request, $e): Response|JsonResponse|SymfonyResponse|null
     {
         $response = $this->handleExceptions($request, $e);
-        app(CorsService::class)->addActualRequestHeaders($request, $response);
+        app(CorsService::class)->addActualRequestHeaders($response, $request);
 
         return $response;
     }
 
-    private function handleExceptions($request, Throwable $e): Response|JsonResponse|SymfonyResponse|null
+    private function handleExceptions($request, $e): Response|JsonResponse|SymfonyResponse|null
     {
         if ($e instanceof ValidationException) {
             return $this->convertValidationExceptionToResponse($e, $request);
