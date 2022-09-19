@@ -52,3 +52,12 @@ curl --location --request POST 'http://localhost:8000/api/oauth/token' \
 --form 'client_secret="YOiZ9bk4FHMQh6XOjXFO3vuP89D21lMlwg2xRj9k"' \
 --form 'refresh_token=<refresh_token>' \
 --form 'scope=manage-products purchase-product'
+
+
+curl --location --request POST 'http://localhost:8000/api/oauth/token' \
+--form 'grant_type="password"' \
+--form 'client_id="974d8008-6f51-4a02-84bf-d94dda1e6eae"' \
+--form 'client_secret="QR8paLrh3600VRnwXjZhDqkxON2gIdIVNCB8tuSs"' \
+--form 'username="leon34@example.org"' \
+--form 'password="password"' \
+--form 'scope="read-general"'
