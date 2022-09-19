@@ -7,6 +7,8 @@ use App\Http\Middleware\SignatureMiddleware;
 use App\Http\Middleware\TransformInput;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Laravel\Passport\Http\Middleware\CheckClientCredentials;
+use Laravel\Passport\Http\Middleware\CheckForAnyScope;
+use Laravel\Passport\Http\Middleware\CheckScopes;
 
 class Kernel extends HttpKernel
 {
@@ -67,6 +69,8 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'signed' => \App\Http\Middleware\ValidateSignature::class,
+        'scope' => CheckForAnyScope::class,
+        'scopes' => CheckScopes::class,
 //        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'throttle' => CustomThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
