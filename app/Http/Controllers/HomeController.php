@@ -27,9 +27,4 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
-    public function getTokens(): Factory|View|Application
-    {
-        return view('home.personal-tokens');
-    }
 }

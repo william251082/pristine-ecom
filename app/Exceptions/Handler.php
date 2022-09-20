@@ -12,9 +12,9 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Exception\MethodNotAllowedException;
-use Throwable;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
@@ -59,7 +59,7 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function ($e) {
+        $this->reportable(function (MethodNotAllowedHttpException $e) {
             //
         });
     }
