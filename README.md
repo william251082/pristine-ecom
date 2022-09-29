@@ -6,7 +6,7 @@
 
 ## Contents
 
-* [Set Up Project](#set-up-project)
+* [Project Set Up](#project-set-up)
 * [Resources](#resources)
 * [Restrictions](#restrictions)
 * [User Stories](#user-stories)
@@ -16,11 +16,30 @@
 * [Product Stories](#product-stories)
 * [Category Stories](#category-stories)
 
-### Set Up Project
+### Project Set Up
 1. Run `docker-compose up`
 2. Copy environment file `cp .env.example .env`
-3. Run db migration and populate db with dummy data `php artisan migrate:refresh --seed`
-
+3. Access php image `docker exec -it api-php /bin/sh`
+4. Run db migration and populate db with dummy data `/var/www/ecom # php artisan migrate:refresh --seed`
+5. Access db image `docker exec -it database /bin/sh`
+6. Check if you have tables and data `MariaDB [ecom]> show tables;`
+7. Generate client token: `/var/www/ecom # php artisan passport:client --password`. Press enter twice.
+8. You'll get:
+```
+Client ID: 9762013a-40e3-4295-bf34-7a435ac75003
+Client secret: n3NtcNvzY81ZCQw30sjlrVik4HZad6vsNXMAkIYa
+```
+9. Which you can use client id and secret to request resource like this:
+```
+curl --location --request POST 'http://localhost:8000/api/oauth/token' \
+--form 'grant_type="password"' \
+--form 'client_id="974d8008-6f51-4a02-84bf-d94dda1e6eae"' \
+--form 'client_secret="QR8paLrh3600VRnwXjZhDqkxON2gIdIVNCB8tuSs"' \
+--form 'username="leon34@example.org"' \
+--form 'password="password"' \
+--form 'scope="read-general"'
+```
+10. Enjoy!
 
 ### Resources
 * User
