@@ -24,9 +24,9 @@ class ProductCategoryController extends ApiController
 
     public function index(Product $product): JsonResponse
     {
-        $buyers = $product->categories()->get();
+        $categories = $product->categories()->get();
 
-        return $this->showAll($buyers);
+        return $this->showAll($categories);
     }
 
     public function update(Request $request, Product $product, Category $category)

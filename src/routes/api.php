@@ -14,10 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::resource('buyer', 'App\Http\Controllers\Buyer\BuyerController');
 Route::resource('buyer.transaction', 'App\Http\Controllers\Buyer\BuyerTransactionController');
 Route::resource('buyer.product', 'App\Http\Controllers\Buyer\BuyerProductController');

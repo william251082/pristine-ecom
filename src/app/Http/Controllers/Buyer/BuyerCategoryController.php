@@ -20,7 +20,7 @@ class BuyerCategoryController extends ApiController
 
     public function index(Buyer $buyer): JsonResponse
     {
-        $transactions = $buyer
+        $categories = $buyer
             ->transaction()
             ->with('product.categories')
             ->get()
@@ -30,6 +30,6 @@ class BuyerCategoryController extends ApiController
             ->values()
         ;
 
-        return $this->showAll($transactions);
+        return $this->showAll($categories);
     }
 }
